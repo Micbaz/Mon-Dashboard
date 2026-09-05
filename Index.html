@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Dashboard Personnel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8 font-sans">
+
+    <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
+        <div>
+            <h1 class="text-3xl font-bold text-sky-400">Tableau de Bord</h1>
+            <p class="text-slate-400 text-sm" id="current-date">Chargement de la date...</p>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
+            <i data-lucide="clock" class="w-5 h-5 text-sky-400"></i>
+            <span id="current-time" class="text-xl font-mono font-semibold">--:--:--</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold flex items-center gap-2 text-sky-400">
+                        <i data-lucide="cloud-sun" class="w-6 h-6"></i> Météo Locale
+                    </h2>
+                    <span id="weather-location" class="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded">Sainte-Anne-des-Lacs</span>
+                </div>
+                
+                <div class="flex items-center justify-between my-6">
+                    <div>
+                        <div id="weather-temp" class="text-5xl font-bold">--°C</div>
+                        <div id="weather-desc" class="text-slate-400 mt-1 capitalize">Chargement...</div>
+                    </div>
+                    <div id="weather-icon" class="text-sky-400">
+                        <i data-lucide="sun" class="w-16 h-16"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 border-t border-slate-700 pt-4 text-sm text-slate-300">
+                <div>Vent : <span id="weather-wind" class="font-semibold text-slate-100">-- km/h</span></div>
+                <div>Humidité : <span id="weather-humidity" class="font-semibold text-slate-100">--%</span></div>
+            </div>
+        </section>
+
+        <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg flex flex-col">
+            <h2 class="text-xl font-semibold flex items-center gap-2 text-emerald-400 mb-4">
+                <i data-lucide="calendar" class="w-6 h-6"></i> Rendez-vous du jour
+            </h2>
+
+            <form id="todo-form" class="flex gap-2 mb-4">
+                <input type="text" id="todo-input" placeholder="Ajouter un RDV..." required
+                       class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                <input type="time" id="todo-time" 
+                       class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-lg text-sm transition">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                </button>
+            </form>
+
+            <ul id="todo-list" class="space-y-2 overflow-y-auto max-h-56 flex-1 pr-1">
+                </ul>
+        </section>
+
+        <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg lg:col-span-1 md:col-span-2">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold flex items-center gap-2 text-amber-400">
+                    <i data-lucide="trending-up" class="w-6 h-6"></i> Indice Boursier TSX
+                </h2>
+                <span class="text-xs bg-amber-950 text-amber-300 border border-amber-800 px-2 py-1 rounded">Bourse de Toronto</span>
+            </div>
+
+            <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 mb-4 flex justify-between items-center">
+                <div>
+                    <div class="text-xs text-slate-400 uppercase font-bold">S&P/TSX Composite</div>
+                    <div class="text-2xl font-bold">22 850,15</div>
+                </div>
+                <div class="text-right text-emerald-400 font-semibold text-sm">
+                    +112.40 (+0.49%)
+                </div>
+            </div>
+
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Secteurs Principaux</h3>
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
+                    <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Énergie</span>
+                    <span class="text-emerald-400 font-mono font-medium">+1.25%</span>
+                </div>
+                <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
+                    <span class="flex items-center gap-2"><i data-lucide="landmark" class="w-4 h-4 text-blue-400"></i> Services Financiers</span>
+                    <span class="text-emerald-400 font-mono font-medium">+0.35%</span>
+                </div>
+                <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
+                    <span class="flex items-center gap-2"><i data-lucide="pickaxe" class="w-4 h-4 text-orange-400"></i> Matériaux / Mines</span>
+                    <span class="text-rose-400 font-mono font-medium">-0.42%</span>
+                </div>
+                <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
+                    <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-purple-400"></i> Technologies</span>
+                    <span class="text-emerald-400 font-mono font-medium">+0.88%</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Initialiser les icônes Lucide
+        lucide.createIcons();
+
+        // 1. Horloge et Date
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('fr-FR');
+            document.getElementById('current-date').textContent = now.toLocaleDateString('fr-FR', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. Météo via Open-Meteo (Sainte-Anne-des-Lacs par défaut)
+        async function fetchWeather() {
+            const lat = 45.85;
+            const lon = -74.13;
+            try {
+                const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto`);
+                const data = await response.json();
+                
+                document.getElementById('weather-temp').textContent = `${Math.round(data.current.temperature_2m)}°C`;
+                document.getElementById('weather-wind').textContent = `${Math.round(data.current.wind_speed_10m)} km/h`;
+                document.getElementById('weather-humidity').textContent = `${data.current.relative_humidity_2m}%`;
+                
+                // Code météo basique
+                const code = data.current.weather_code;
+                let desc = "Dégagé";
+                if (code > 0 && code <= 3) desc = "Partiellement nuageux";
+                else if (code >= 45 && code <= 48) desc = "Brouillard";
+                else if (code >= 51) desc = "Pluie / Averses";
+                document.getElementById('weather-desc').textContent = desc;
+
+            } catch (err) {
+                document.getElementById('weather-desc').textContent = "Erreur de chargement";
+            }
+        }
+        fetchWeather();
+
+        // 3. Gestionnaire de Rendez-vous (LocalStorage)
+        const todoForm = document.getElementById('todo-form');
+        const todoInput = document.getElementById('todo-input');
+        const todoTime = document.getElementById('todo-time');
+        const todoList = document.getElementById('todo-list');
+
+        let todos = JSON.parse(localStorage.getItem('my_dashboard_rdv')) || [
+            { text: "Air Miles, Bing Rewards", time: "09:00" }
+        ];
+
+        function renderTodos() {
+            todoList.innerHTML = '';
+            if(todos.length === 0) {
+                todoList.innerHTML = `<li class="text-slate-500 text-sm italic text-center py-4">Aucun rendez-vous aujourd'hui</li>`;
+                return;
+            }
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.className = "flex items-center justify-between bg-slate-900/80 p-3 rounded-lg border border-slate-700/50 text-sm";
+                li.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        ${todo.time ? `<span class="bg-emerald-950 text-emerald-400 font-mono text-xs px-2 py-1 rounded border border-emerald-800">${todo.time}</span>` : ''}
+                        <span>${todo.text}</span>
+                    </div>
+                    <button onclick="deleteTodo(${index})" class="text-slate-500 hover:text-rose-400 transition">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                `;
+                todoList.appendChild(li);
+            });
+            lucide.createIcons();
+        }
+
+        todoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if(!todoInput.value.trim()) return;
+            todos.push({ text: todoInput.value.trim(), time: todoTime.value });
+            localStorage.setItem('my_dashboard_rdv', JSON.stringify(todos));
+            todoInput.value = '';
+            todoTime.value = '';
+            renderTodos();
+        });
+
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            localStorage.setItem('my_dashboard_rdv', JSON.stringify(todos));
+            renderTodos();
+        }
+
+        renderTodos();
+    </script>
+</body>
+</html>
