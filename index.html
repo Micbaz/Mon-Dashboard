@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Dashboard Personnel</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8 font-sans">
 
+    <!-- En-tête -->
     <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
         <div>
             <h1 class="text-3xl font-bold text-sky-400">Tableau de Bord</h1>
@@ -20,8 +23,10 @@
         </div>
     </header>
 
+    <!-- Contenu Principal Grid -->
     <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+        <!-- CARD 1: Météo Locale -->
         <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg flex flex-col justify-between">
             <div>
                 <div class="flex justify-between items-center mb-4">
@@ -48,64 +53,85 @@
             </div>
         </section>
 
+        <!-- CARD 2: Agenda (Aujourd'hui & Demain) -->
         <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg flex flex-col">
             <h2 class="text-xl font-semibold flex items-center gap-2 text-emerald-400 mb-4">
-                <i data-lucide="calendar" class="w-6 h-6"></i> Rendez-vous du jour
+                <i data-lucide="calendar" class="w-6 h-6"></i> Agenda & Rendez-vous
             </h2>
 
+            <!-- Formulaire d'ajout rapide -->
             <form id="todo-form" class="flex gap-2 mb-4">
                 <input type="text" id="todo-input" placeholder="Ajouter un RDV..." required
                        class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
                 <input type="time" id="todo-time" 
                        class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                <select id="todo-day" class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-300">
+                    <option value="today">Aujourd'hui</option>
+                    <option value="tomorrow">Demain</option>
+                </select>
                 <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-lg text-sm transition">
                     <i data-lucide="plus" class="w-4 h-4"></i>
                 </button>
             </form>
 
-            <ul id="todo-list" class="space-y-2 overflow-y-auto max-h-56 flex-1 pr-1">
-                </ul>
+            <div class="space-y-4 overflow-y-auto max-h-64 pr-1">
+                <!-- Section Aujourd'hui -->
+                <div>
+                    <h3 class="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 border-b border-slate-700 pb-1">Aujourd'hui</h3>
+                    <ul id="todo-list-today" class="space-y-2"></ul>
+                </div>
+
+                <!-- Section Demain -->
+                <div>
+                    <h3 class="text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2 border-b border-slate-700 pb-1">Demain</h3>
+                    <ul id="todo-list-tomorrow" class="space-y-2"></ul>
+                </div>
+            </div>
         </section>
 
+        <!-- CARD 3: Marché TSX & Secteurs -->
         <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold flex items-center gap-2 text-amber-400">
                     <i data-lucide="trending-up" class="w-6 h-6"></i> Indice Boursier TSX
                 </h2>
-                <span class="text-xs bg-amber-950 text-amber-300 border border-amber-800 px-2 py-1 rounded">TSX</span>
+                <span class="text-xs bg-amber-950 text-amber-300 border border-amber-800 px-2 py-1 rounded">TSX / TSE</span>
             </div>
 
+            <!-- Indice Principal Mis à jour -->
             <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 mb-4 flex justify-between items-center">
                 <div>
                     <div class="text-xs text-slate-400 uppercase font-bold">S&P/TSX Composite</div>
-                    <div class="text-2xl font-bold">22 850,15</div>
+                    <div class="text-2xl font-bold font-mono text-slate-100">36 516,80 $</div>
                 </div>
                 <div class="text-right text-emerald-400 font-semibold text-sm">
-                    +112.40 (+0.49%)
+                    +112,40 (+0,31%)
                 </div>
             </div>
 
+            <!-- Secteurs Clés -->
             <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Secteurs Principaux</h3>
             <div class="space-y-2 text-sm">
                 <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
                     <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Énergie</span>
-                    <span class="text-emerald-400 font-mono font-medium">+1.25%</span>
+                    <span class="text-emerald-400 font-mono font-medium">+1,25%</span>
                 </div>
                 <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
                     <span class="flex items-center gap-2"><i data-lucide="landmark" class="w-4 h-4 text-blue-400"></i> Services Financiers</span>
-                    <span class="text-emerald-400 font-mono font-medium">+0.35%</span>
+                    <span class="text-emerald-400 font-mono font-medium">+0,35%</span>
                 </div>
                 <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
                     <span class="flex items-center gap-2"><i data-lucide="pickaxe" class="w-4 h-4 text-orange-400"></i> Matériaux / Mines</span>
-                    <span class="text-rose-400 font-mono font-medium">-0.42%</span>
+                    <span class="text-rose-400 font-mono font-medium">-0,42%</span>
                 </div>
                 <div class="flex justify-between items-center bg-slate-900/50 p-2 rounded border border-slate-800">
                     <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-purple-400"></i> Technologies</span>
-                    <span class="text-emerald-400 font-mono font-medium">+0.88%</span>
+                    <span class="text-emerald-400 font-mono font-medium">+0,88%</span>
                 </div>
             </div>
         </section>
 
+        <!-- CARD 4: Convertisseur de Devises -->
         <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-lg lg:col-span-3 md:col-span-2">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold flex items-center gap-2 text-indigo-400">
@@ -143,11 +169,10 @@
 
     </main>
 
+    <!-- Scripts JavaScript -->
     <script>
-        // Initialiser les icônes Lucide
         lucide.createIcons();
 
-        // 1. Horloge et Date
         function updateClock() {
             const now = new Date();
             document.getElementById('current-time').textContent = now.toLocaleTimeString('fr-FR');
@@ -158,7 +183,6 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Météo via Open-Meteo (Sainte-Anne-des-Lacs par défaut)
         async function fetchWeather() {
             const lat = 45.85;
             const lon = -74.13;
@@ -183,58 +207,66 @@
         }
         fetchWeather();
 
-        // 3. Gestionnaire de Rendez-vous (LocalStorage)
+        // Rendez-vous (Aujourd'hui & Demain)
         const todoForm = document.getElementById('todo-form');
         const todoInput = document.getElementById('todo-input');
         const todoTime = document.getElementById('todo-time');
-        const todoList = document.getElementById('todo-list');
+        const todoDay = document.getElementById('todo-day');
 
-        let todos = JSON.parse(localStorage.getItem('my_dashboard_rdv')) || [
-            { text: "Air Miles, Bing Rewards", time: "09:00" }
-        ];
+        let todos = JSON.parse(localStorage.getItem('my_dashboard_rdv_v2')) || {
+            today: [],
+            tomorrow: []
+        };
 
         function renderTodos() {
-            todoList.innerHTML = '';
-            if(todos.length === 0) {
-                todoList.innerHTML = `<li class="text-slate-500 text-sm italic text-center py-4">Aucun rendez-vous aujourd'hui</li>`;
-                return;
-            }
-            todos.forEach((todo, index) => {
-                const li = document.createElement('li');
-                li.className = "flex items-center justify-between bg-slate-900/80 p-3 rounded-lg border border-slate-700/50 text-sm";
-                li.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        ${todo.time ? `<span class="bg-emerald-950 text-emerald-400 font-mono text-xs px-2 py-1 rounded border border-emerald-800">${todo.time}</span>` : ''}
+            const todayList = document.getElementById('todo-list-today');
+            const tomorrowList = document.getElementById('todo-list-tomorrow');
+
+            todayList.innerHTML = todos.today.length === 0 
+                ? `<li class="text-slate-500 text-xs italic">Aucun rendez-vous aujourd'hui</li>`
+                : todos.today.map((todo, i) => createTodoHTML(todo, 'today', i)).join('');
+
+            tomorrowList.innerHTML = todos.tomorrow.length === 0 
+                ? `<li class="text-slate-500 text-xs italic">Aucun rendez-vous prévu demain</li>`
+                : todos.tomorrow.map((todo, i) => createTodoHTML(todo, 'tomorrow', i)).join('');
+
+            lucide.createIcons();
+        }
+
+        function createTodoHTML(todo, day, index) {
+            return `
+                <li class="flex items-center justify-between bg-slate-900/80 p-2 rounded border border-slate-700/50 text-sm">
+                    <div class="flex items-center gap-2">
+                        ${todo.time ? `<span class="bg-slate-800 text-slate-300 font-mono text-xs px-2 py-0.5 rounded border border-slate-700">${todo.time}</span>` : ''}
                         <span>${todo.text}</span>
                     </div>
-                    <button onclick="deleteTodo(${index})" class="text-slate-500 hover:text-rose-400 transition">
+                    <button onclick="deleteTodo('${day}', ${index})" class="text-slate-500 hover:text-rose-400 transition">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
-                `;
-                todoList.appendChild(li);
-            });
-            lucide.createIcons();
+                </li>
+            `;
         }
 
         todoForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if(!todoInput.value.trim()) return;
-            todos.push({ text: todoInput.value.trim(), time: todoTime.value });
-            localStorage.setItem('my_dashboard_rdv', JSON.stringify(todos));
+            const targetDay = todoDay.value;
+            todos[targetDay].push({ text: todoInput.value.trim(), time: todoTime.value });
+            localStorage.setItem('my_dashboard_rdv_v2', JSON.stringify(todos));
             todoInput.value = '';
             todoTime.value = '';
             renderTodos();
         });
 
-        function deleteTodo(index) {
-            todos.splice(index, 1);
-            localStorage.setItem('my_dashboard_rdv', JSON.stringify(todos));
+        function deleteTodo(day, index) {
+            todos[day].splice(index, 1);
+            localStorage.setItem('my_dashboard_rdv_v2', JSON.stringify(todos));
             renderTodos();
         }
 
         renderTodos();
 
-        // 4. Convertisseur de devises
+        // Convertisseur
         const rates = {
             CAD: { USD: 0.74, EUR: 0.68 },
             USD: { CAD: 1.35, EUR: 0.92 },
@@ -253,13 +285,11 @@
             const from = fromSelect.value;
             const targets = Object.keys(rates).filter(c => c !== from);
 
-            // Premier résultat
             const t1 = targets[0];
             const val1 = (amount * rates[from][t1]).toFixed(2);
             res1Label.textContent = `${t1} (${t1 === 'EUR' ? '€' : '$'})`;
             res1Val.textContent = `${val1} ${t1 === 'EUR' ? '€' : '$'}`;
 
-            // Second résultat
             const t2 = targets[1];
             const val2 = (amount * rates[from][t2]).toFixed(2);
             res2Label.textContent = `${t2} (${t2 === 'EUR' ? '€' : '$'})`;
